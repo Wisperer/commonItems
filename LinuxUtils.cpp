@@ -971,8 +971,10 @@ namespace Utils
 						to.grow();
 						break;
 					case EILSEQ:
-						LOG(LogLevel::Error) << "invalid input sequence encountered during conversion from " << fromCode << " to " << toCode;
-						return false;
+                        LOG(LogLevel::Error) << "invalid input sequence encountered during conversion from " << fromCode << " to " << toCode;
+                        LOG(LogLevel::Error) << "Displaying input buffer non-mutated:\n" << from.data;
+                        LOG(LogLevel::Error) << "Displaying potentially mutated buffer:\n" << from.in_buffer;
+                        return false;
 					case EINVAL:
 						LOG(LogLevel::Error) << "incomplete input sequence encountered during conversion from " << fromCode << " to " << toCode;
 						return false;
